@@ -40,7 +40,9 @@ Your function returns the tuple defining a chip buy or a bet:
 
 I have provided the simulation code that will be used to evaluate your
 strategy at the end of the competition in "sim.py". You can change anything
-here you like, but there probabaly isn't any need.
+here you like, but there probabaly isn't any need. To see your bank account
+balance at the end off 100 bets, code your strategy in "strategy.py" and
+run "sim.py".
 
 If you plan to do a parameter search, use the kwargs.  See meta.py for an
 example of how this is easily done.
