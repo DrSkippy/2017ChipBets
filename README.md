@@ -10,7 +10,8 @@ There are red and white chips distributed between the two bags:
 You have a bank account of $1000.
 
 The object is to guess which bag chips are being selected from and to bet
-some up to 100% of your bank on this guess.
+up to 100% of your bank on the guess. E.g. you guess bag "wd" and bet $50.
+If you are correct, you get $50; if you are wrong, you lose $50.
 
 You will get 100 bets. At the beginning of each session, a bag
 is selected at random. You can buy chips from that bag for $1
