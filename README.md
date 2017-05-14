@@ -3,6 +3,7 @@
 Your have 2 bags containing 200 chips each.
 
 There are red and white chips distributed between the two bags:
+
     White dominant bag: 160 white chips and 40 red chips
     Red dominant bag:   120   red chips and 80 white chips
     
