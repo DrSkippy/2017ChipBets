@@ -14,7 +14,7 @@ up to 100% of your bank on the guess. E.g. you guess bag "wd" and bet $50.
 If you are correct, you get $50; if you are wrong, you lose $50.
 
 You will get 100 bets. At the beginning of each session, a bag
-is selected at random. You can buy chips from that bag for $1
+is selected at random. You can buy chips from that bag for $5
 each using your bank account.  Chips are purchased 1 at a time and
 you can switch from buying chips to betting at any time.
 
