@@ -61,8 +61,8 @@ def get_bank(**kwargs):
             move_choice, bet, bet_bag = bet_strategy(n_session, bank, chip_color, session_history, **kwargs)
             logging.debug("strategy: {} bank=${} ({},{},{})".format(n_session, bank, move_choice, bet, bet_bag))
             ###########################################################
-            session_history.append((move_choice, bet, bet_bag))
             if move_choice.lower() == "bet":
+                chip_color = 'u'
                 # only integer bets
                 bet = int(bet)
                 # minimum bet is $1
@@ -90,6 +90,7 @@ def get_bank(**kwargs):
             else:
                 logging.error("{} bank=${}".format(n_session, move_choice, bank,"Not a valid move choice!"))
                 break
+            session_history.append((move_choice, bet, bet_bag, chip_color))
         n_session +=1 
 
     logging.debug("{} bank=${} ***FINAL***".format(n_session, bank))
