@@ -91,6 +91,7 @@ def get_bank(**kwargs):
                 logging.error("{} bank=${}".format(n_session, move_choice, bank,"Not a valid move choice!"))
                 break
             session_history.append((move_choice, bet, bet_bag, chip_color))
+            logging.debug("history: {}".format(session_history))
         n_session +=1 
 
     logging.debug("{} bank=${} ***FINAL***".format(n_session, bank))

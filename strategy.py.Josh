@@ -1,0 +1,102 @@
+""" 
+    SUBMIT THIS FILE AS YOUR ENTRY!
+    
+    This is where you code your strategy. You can add any imports and 
+    additional functions you need. When you submit your answer, it must
+    contain the fuction below.
+"""    
+from sim_parameters import *
+import random
+import sys
+from scipy.stats import hypergeom
+
+def prob(last_chip):
+    """Calculate the probability of observing the given chip(s?) for both bags.""" 
+    logging.info('last chip: {}'.format(last_chip))
+    # update known values from sim_parameters
+
+    ###
+    # start with fixed probs
+    ###
+    # calculate probability of observation for each bag 
+    ## start with known probs
+    #prob_rd = (n_wd_r + n_rd_r)/(n_wd_w + n_wd_r + n_rd_w + n_rd_r) 
+    #prob_wd = (n_wd_w + n_rd_w)/(n_wd_w + n_wd_r + n_rd_w + n_rd_r) 
+
+    ###
+    # now with hypergeom + one observation 
+    ###
+    successes = 1 if last_chip == 'r' else 0
+    ### red bag
+    [M, n, N] = [200, 120, 1]
+    rv = hypergeom(M, n, N)
+    prob_rd = rv.pmf(successes) 
+
+    ### white bag
+    [M, n, N] = [200, 40, 1]
+    rv = hypergeom(M, n, N)
+    prob_wd = rv.pmf(successes) 
+    
+    ### 
+    # now hypergeom + obs stack
+    ### 
+
+    
+    logging.info('p(r) = {}, p(w) = {}'.format(prob_rd, prob_wd))
+    return prob_rd, prob_wd
+
+def bet_strategy(session, bank, chip_color, session_history, **kwargs):
+    
+    # Based on original bag setup
+    p_r = (n_wd_r + n_rd_r)/(n_wd_w + n_wd_r + n_rd_w + n_rd_r)
+    p_w = (n_wd_w + n_rd_w)/(n_wd_w + n_wd_r + n_rd_w + n_rd_r)
+    
+    # use logging like this
+    logging.debug("p(r) = {} p(w) = {}".format(p_r, p_w))
+    
+    # There are two move choices:
+    #     (1) to bet on the bag being white-dominate, red-dominate
+    #         (ud for undefined)
+    #     (2) buy a chip draw and see its color
+    move_choices = ["bet","buy"]
+    
+    # These are the codes for your bag bet choices.  Don't bet on "ud"!
+    dominant_bag_choices = ["wd", "rd", "ud"]
+
+    if session_history == []:
+        # We haven't done anything yet. So, buy a chip
+        move_choice = "buy"
+    
+        # These options are ignored, but cannot be None
+        bet = 0
+        bet_bag_dominant_color = "ud"
+    else:
+        # Make a bet
+        move_choice = "bet"
+        
+        # Based on last chip returned
+        logging.info("session history: {}".format(session_history))
+
+    #### edit this code
+#        if random.random() > p_w:
+#            bet_bag_dominant_color = "rd"
+#        else:
+#            bet_bag_dominant_color = "wd"
+#        # see file meta.py for parameter search example 
+#        # bet = int(kwargs["bet_frac"]*bank)
+#        bet = int(0.118*bank)
+
+        # bet is currently a total guess - update at second stage
+        bet = 5 
+        last_chip = session_history[0][-1]
+        prob_rd, prob_wd = prob(last_chip)
+        bet_bag_dominant_color = 'rd' if prob_rd > prob_wd else 'wd'
+
+
+    #### </ edit this code>
+        
+        # Don't try to bet more than you have
+        if bet <=0:
+            bet = bank
+    
+    return move_choice, bet, bet_bag_dominant_color
