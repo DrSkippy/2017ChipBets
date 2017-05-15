@@ -30,13 +30,14 @@ def bet_strategy(session, bank, chip_color, session_history, **kwargs)
     session is an int [0, 99] enumerating your bets
     bank is your current bank balance
     chip_color is the color of a chip if your last move was a "buy" ["w","r"]
-    session_history is the list of all of your moves during the current session
+    session_history is the list of all of your moves during the current session including
+         the color of chips you bought ["w","r","u"]
 
 Your function returns the tuple defining a chip buy or a bet:
 
     move_choice="bet" or "buy
     bet = [1, bank]
-    bet_bag_dominant color = "wd" or "rd"
+    bet_bag_dominant_color = "wd" or "rd"
 
 I have provided the simulation code that will be used to evaluate your
 strategy at the end of the competition in "sim.py". You can change anything
