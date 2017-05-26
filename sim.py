@@ -18,7 +18,7 @@ def get_bank(**kwargs):
     logging.debug("#"*60)
 
     ##############################
-    seed_value = 12438
+    seed_value = 14338
     ##############################
     random.seed(a=seed_value)
     logging.debug("seed={}".format(seed_value))
@@ -80,13 +80,19 @@ def get_bank(**kwargs):
                     break
 
             elif move_choice.lower() == "buy":
+                try:
+                    # policy is that empty bag errors out
+                    chip_color = bags[bag_key].pop()
+                except IndexError:
+                    logging.error("{}-{} Bag empty!".format(n_session, move_choice))
+                    break
+                #
                 if bank > chip_cost:
                     bank -= chip_cost
                 else:
                     logging.error("{}-{} bank=${} {}".format(n_session, move_choice, bank,"Error, bank < 1"))
                     break
-                #
-                chip_color = bags[bag_key].pop()
+
             else:
                 logging.error("{} bank=${}".format(n_session, move_choice, bank,"Not a valid move choice!"))
                 break

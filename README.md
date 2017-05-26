@@ -14,11 +14,12 @@ up to 100% of your bank on the guess. E.g. you guess bag "wd" and bet $50.
 If you are correct, you get $50; if you are wrong, you lose $50.
 
 You will get 100 bets. At the beginning of each session, a bag
-is selected at random. You can buy chips from that bag for $5
+is selected at random. You can buy chips from that bag for $9.30
 each using your bank account.  Chips are purchased 1 at a time and
 you can switch from buying chips to betting at any time.
 
-Chips are not replaced in the bags at any time.
+Chips are not replaced in the bags at any time. If you buy all of the chips from
+any one bag, your session(s) is ended.
 
 Highest bank account at the end of 100 bets wins.
 
@@ -46,7 +47,7 @@ balance at the end off 100 bets, code your strategy in "strategy.py" and
 run "sim.py".
 
 If you plan to do a parameter search, use the kwargs.  See meta.py for an
-example of how this is easily done.
+example of how this is done.
 
 The example code shows a strategy of random selection base on buying a
 single chip before betting. Run this example to see how it works, then
